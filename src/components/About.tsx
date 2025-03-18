@@ -1,11 +1,19 @@
 import { motion } from "framer-motion";
-import brand_img from "../assets/brand_img.png";
+import brand_img from "../assets/brand_img.png"; // 🚀 Use WebP format
 import {
   FaCalendarAlt,
   FaBuilding,
   FaRulerCombined,
   FaTasks,
 } from "react-icons/fa";
+
+// Stats data
+const stats = [
+  { id: 1, icon: FaCalendarAlt, value: "10+", label: "Years of Excellence" },
+  { id: 2, icon: FaBuilding, value: "50+", label: "Luxury Rooms" },
+  { id: 3, icon: FaRulerCombined, value: "500+", label: "Happy Guests" },
+  { id: 4, icon: FaTasks, value: "24/7", label: "Customer Support" },
+];
 
 const About = () => {
   const statsVariants = {
@@ -32,24 +40,24 @@ const About = () => {
       {/* Left Side: Image (White Background) */}
       <motion.div
         className="flex flex-col md:w-1/2 items-center justify-center mb-10 md:mb-0 md:pr-8 w-full h-full bg-white"
-        initial={{ opacity: 0, x: -30 }} // Reduced movement on the x-axis
+        initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.4 }} // Reduced duration for faster appearance
+        transition={{ duration: 0.4 }}
       >
         {/* Image */}
         <motion.div
           className="w-full h-full overflow-hidden rounded-xl"
-          whileHover={{ scale: 1.05 }} // Slightly reduced the hover scale for a more subtle effect
-          transition={{ duration: 0.3 }} // Reduced duration for hover
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.3 }}
         >
           <motion.img
             src={brand_img}
             alt="Brand Image"
             className="w-full h-full object-cover"
-            initial={{ scale: 1.1 }} // Reduced initial scale for smoother effect
+            initial={{ scale: 1.1 }}
             animate={{ scale: 1 }}
-            transition={{ duration: 0.6 }} // Reduced duration for the image scale transition
+            transition={{ duration: 0.6 }}
           />
         </motion.div>
       </motion.div>
@@ -95,98 +103,32 @@ const About = () => {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          <motion.div
-            className="text-center md:text-left"
-            variants={statItemVariants}
-            whileHover={{ y: -5 }}
-          >
+          {stats.map((stat, index) => (
             <motion.div
-              initial={{ rotate: 0 }}
-              whileHover={{ rotate: 10, scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              key={stat.id}
+              className="text-center md:text-left"
+              variants={statItemVariants}
+              whileHover={{ y: -5 }}
             >
-              <FaCalendarAlt className="text-3xl text-[#192735] mx-auto md:mx-0" />
+              <motion.div
+                initial={{ rotate: 0 }}
+                whileHover={{ rotate: 10, scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <stat.icon className="text-3xl text-[#192735] mx-auto md:mx-0" />
+              </motion.div>
+              <motion.p
+                className="text-3xl font-medium text-[#192735] mt-2"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 + index * 0.1 }}
+              >
+                {stat.value}
+              </motion.p>
+              <p>{stat.label}</p>
             </motion.div>
-            <motion.p
-              className="text-3xl font-medium text-[#192735] mt-2"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-            >
-              10+
-            </motion.p>
-            <p>Years of Excellence</p>
-          </motion.div>
-          <motion.div
-            className="text-center md:text-left"
-            variants={statItemVariants}
-            whileHover={{ y: -5 }}
-          >
-            <motion.div
-              initial={{ rotate: 0 }}
-              whileHover={{ rotate: 10, scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <FaBuilding className="text-3xl text-[#192735] mx-auto md:mx-0" />
-            </motion.div>
-            <motion.p
-              className="text-3xl font-medium text-[#192735] mt-2"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
-            >
-              50+
-            </motion.p>
-            <p>Luxury Rooms</p>
-          </motion.div>
-          <motion.div
-            className="text-center md:text-left"
-            variants={statItemVariants}
-            whileHover={{ y: -5 }}
-          >
-            <motion.div
-              initial={{ rotate: 0 }}
-              whileHover={{ rotate: 10, scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <FaRulerCombined className="text-3xl text-[#192735] mx-auto md:mx-0" />
-            </motion.div>
-            <motion.p
-              className="text-3xl font-medium text-[#192735] mt-2"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.6 }}
-            >
-              500+
-            </motion.p>
-            <p>Happy Guests</p>
-          </motion.div>
-          <motion.div
-            className="text-center md:text-left"
-            variants={statItemVariants}
-            whileHover={{ y: -5 }}
-          >
-            <motion.div
-              initial={{ rotate: 0 }}
-              whileHover={{ rotate: 10, scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <FaTasks className="text-3xl text-[#192735] mx-auto md:mx-0" />
-            </motion.div>
-            <motion.p
-              className="text-3xl font-medium text-[#192735] mt-2"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.7 }}
-            >
-              24/7
-            </motion.p>
-            <p>Customer Support</p>
-          </motion.div>
+          ))}
         </motion.div>
 
         {/* Testimonial */}
@@ -195,18 +137,18 @@ const About = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.2, delay: 0.1 }} // Reduced both duration and delay significantly
+          transition={{ duration: 0.2, delay: 0.1 }}
           whileHover={{
             boxShadow:
               "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-            y: -3, // Reduced hover movement for subtle effect
+            y: -3,
           }}
         >
           <motion.p
             className="text-[#3D3D3D] italic"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.15 }} // Reduced delay
+            transition={{ delay: 0.15 }}
           >
             "The best hotel experience I've ever had! The staff was incredibly
             welcoming, and the rooms were luxurious and comfortable. Highly
@@ -216,7 +158,7 @@ const About = () => {
             className="text-[#192735] font-semibold mt-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.25 }} // Reduced delay
+            transition={{ delay: 0.25 }}
           >
             – John Doe
           </motion.p>
@@ -229,11 +171,12 @@ const About = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          whileHover={{ 
+          whileHover={{
             scale: 1.05,
             boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)",
           }}
           whileTap={{ scale: 0.95 }}
+          aria-label="Learn More"
         >
           Learn More
           <motion.svg
@@ -242,9 +185,9 @@ const About = () => {
             viewBox="0 0 20 20"
             fill="currentColor"
             animate={{ x: 0 }}
-            transition={{ 
+            transition={{
               type: "spring",
-              stiffness: 300
+              stiffness: 300,
             }}
           >
             <path

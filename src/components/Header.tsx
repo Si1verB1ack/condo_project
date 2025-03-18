@@ -1,5 +1,5 @@
 import Navbar from "./Navbar";
-import headerImg from "../assets/header_img.png";
+import headerImg from "../assets/header_img_lower_res.jpg";
 import { motion } from "framer-motion";
 
 function Header() {
@@ -16,6 +16,7 @@ function Header() {
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.5, ease: "easeInOut" }}
+          style={{ willChange: "transform, opacity" }} // 🚀 Optimize animations
         >
           Explore homes that fit your dreams
         </motion.h2>

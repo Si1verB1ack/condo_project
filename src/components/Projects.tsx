@@ -8,8 +8,8 @@ function Projects() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsToShow, setCardsToShow] = useState(1);
   const [cardsWidth, setCardsWidth] = useState(0);
-  const [isInView, setIsInView] = useState(false); // state to track visibility of the carousel
-  const [hasAnimated, setHasAnimated] = useState(false); // flag to track animation status
+  const [isInView, setIsInView] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
   const carouselRef = useRef(null);
   const totalProjects = projectsData.length;
 
@@ -38,7 +38,6 @@ function Projects() {
     return () => window.removeEventListener("resize", updateLayout);
   }, []);
 
-  // Create a wrapped array for infinite scroll effect
   const getVisibleProjects = () => {
     let wrappedProjects = [...projectsData];
 
@@ -75,7 +74,6 @@ function Projects() {
     });
   };
 
-  // Calculate transform position considering the wrapped items
   const calculateTransform = () => {
     const offset = cardsToShow;
     return -((currentIndex + offset) * cardsWidth);
@@ -106,13 +104,13 @@ function Projects() {
     const entry = entries[0];
     if (entry.isIntersecting && !hasAnimated) {
       setIsInView(true);
-      setHasAnimated(true); // Set the flag to true to prevent further animations
+      setHasAnimated(true);
     }
   };
 
   useEffect(() => {
     const observer = new IntersectionObserver(observerCallback, {
-      threshold: 0.1, // trigger when 10% of the carousel is in view
+      threshold: 0.1,
     });
 
     if (carouselRef.current) {
@@ -124,7 +122,7 @@ function Projects() {
         observer.unobserve(carouselRef.current);
       }
     };
-  }, [hasAnimated]); // Only re-run the effect when `hasAnimated` changes
+  }, [hasAnimated]);
 
   return (
     <div

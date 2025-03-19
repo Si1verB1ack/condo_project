@@ -27,7 +27,7 @@ function Navbar() {
     <div className="absolute top-0 left-0 w-full z-10">
       <div className="container mx-auto flex items-center justify-between py-4 px-6 md:px-20 lg:px-32 text-[#FFFFFF]">
         {/* Logo */}
-        <img src={logo} alt="Logo" className="h-10" />
+        <img src={logo} alt="Logo" loading="eager" fetchPriority="high" className="h-10" />
 
         {/* Desktop Navigation */}
         <ul className="hidden md:flex gap-7 text-[#E8E9E8]">

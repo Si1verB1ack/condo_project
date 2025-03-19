@@ -1,8 +1,14 @@
 import Navbar from "./Navbar";
 import headerImg from "../assets/header_img_lower_res.jpg";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 function Header() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true); // Trigger animation after render
+  }, []);
   return (
     <div
       className="min-h-screen bg-cover mb-4 bg-center flex items-center w-full overflow-hidden bg-[#192735]"
@@ -14,9 +20,9 @@ function Header() {
         <motion.h2
           className="text-5xl sm:text-6xl md:text-[82px] inline-block max-w-3xl font-semibold pt-20 text-[#FFFFFF] hover:text-gray-300 transition-colors duration-300"
           initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}} // Animate after render
           transition={{ duration: 1.5, ease: "easeInOut" }}
-          style={{ willChange: "transform, opacity" }} // 🚀 Optimize animations
+          style={{ willChange: "transform, opacity" }}
         >
           Explore homes that fit your dreams
         </motion.h2>
